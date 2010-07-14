@@ -14,14 +14,12 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_not_nil(directions.xml =~ /36\.1773300/)
   end
   
-
+  def test_directions_not_found
+    directions = GoogleDirections.new("fasfefasdfdfsd", "499 Gordonsville Highway, 38563")
+    assert_equal(0, directions.distance_in_miles)
+    assert_equal(0, directions.drive_time_in_minutes)
+    assert_equal("NOT_FOUND", directions.status)
+  end
   
   
 end
-
-# location 1 not included
-# location 2 not included
-# google maps not found
-# google maps busy
-# 
-# no google maps key
