@@ -1,0 +1,42 @@
+h2. Usage
+
+Get a google maps API key, and store in your app under GOOGLE_MAPS_API_KEY
+<pre>
+	GOOGLE_MAPS_API_KEY = 'your_api_key'
+</pre>
+
+<pre>
+directions = GoogleDirections.new(origin, destination)
+</pre>
+where _origin_ and _destination_ are strings of addresses or places that Google can find an address for.  Example: "816 Meridian St., 37207"
+
+<pre>
+drive_time_in_minutes = directions.drive_time_in_minutes
+distance_in_miles = directions.distance_in_miles
+</pre>
+Call these two methods to get integers back for the entire drive time of the trip in minutes and distance in miles
+
+<pre>
+xml = directions.xml  
+xml_call = directions.xml_call
+</pre>
+Call these if you want the XML Google returns containing all the driving steps or you want to see the URL
+
+h2. Installation
+
+h3. gem
+# gem install google_directions
+# add config.gem "google_directions" to your environment.rb file
+
+Or do Bundler's Gemfile
+
+h3. Rails 2.3.8 compatible
+Not yet tested on Rails 3.  It probably is Rails 3 compatible, because it's just a single class with a few methods.  It's probably compatible with every ruby project ever.
+
+h3. Google maps API key
+
+You'll need a Google Map API key
+
+http://code.google.com/apis/maps/signup.html
+
+Include it as the constant GOOGLE_MAPS_API_KEY in an app configuration file (environment.rb, config/initializers/api_keys.rb)
