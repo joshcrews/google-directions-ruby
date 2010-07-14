@@ -18,6 +18,12 @@ xml = directions.xml
 xml_call = directions.xml_call
 </pre>
 
+h3. Error situations
+
+If Google can't recognize your places, the distance_in_miles and drive_time_in_minutes will each return 0.  You can call <pre>directions.status</pre> and it should return "NOT_FOUND" (directions.status will also return any other Google API call statuses)
+
+TODO: handle QUERY_OVER_LIMIT
+
 h2. Installation
 
 h3. gem
@@ -51,3 +57,4 @@ You'll need a Google Map API key
 http://code.google.com/apis/maps/signup.html
 
 Include it as the constant GOOGLE_MAPS_API_KEY in an app configuration file (environment.rb, config/initializers/api_keys.rb)
+

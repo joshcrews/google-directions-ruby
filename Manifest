@@ -1,5 +1,9 @@
 Manifest
 README.textile
 Rakefile
+google_directions.gemspec
 init.rb
 lib/google_directions.rb
+test/mocks/google_directions_samle_xml.xml
+test/test_helper.rb
+test/unit/google_directions_test.rb
