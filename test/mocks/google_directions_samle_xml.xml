@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DirectionsResponse>
+  <status>OK</status>
+  <route>
+    <summary>TN-53 S/Gordonsville Hwy</summary>
+    <leg>
+      <step>
+        <travel_mode>DRIVING</travel_mode>
+        <start_location>
+          <lat>36.2264000</lat>
+          <lng>-85.9490200</lng>
+        </start_location>
+        <end_location>
+          <lat>36.1929700</lat>
+          <lng>-85.9550000</lng>
+        </end_location>
+        <polyline>
+          <points>_nb|Ej|qkOfCFhH_@dEc@rE?nDb@vEjCjHxFzBtBpKnDlD|@bEPbGv@pFiArF?pHyDzDQHF~AExGz@dE?zE`@~@l@zDHbBf@lEf@pAZlG|FrC|@bGfFvBv@vLDfFoD`BO</points>
+          <levels>B????@??@???@???@??????@??@???@@?B</levels>
+        </polyline>
+        <duration>
+          <value>222</value>
+          <text>4 mins</text>
+        </duration>
+        <html_instructions>Head &lt;b&gt;south&lt;/b&gt; on &lt;b&gt;TN-53 S/Gordonsville Hwy&lt;/b&gt; toward &lt;b&gt;Riverwood Cir&lt;/b&gt;</html_instructions>
+        <distance>
+          <value>3950</value>
+          <text>2.5 mi</text>
+        </distance>
+      </step>
+      <step>
+        <travel_mode>DRIVING</travel_mode>
+        <start_location>
+          <lat>36.1929700</lat>
+          <lng>-85.9550000</lng>
+        </start_location>
+        <end_location>
+          <lat>36.1773300</lat>
+          <lng>-85.9475700</lng>
+        </end_location>
+        <polyline>
+          <points>a}{{EvaskOTw@zPiJPU~@QxCyA|C_BbBoAvCa@vI}F^q@xBg@~LmGbC{@|Be@rQFvAW</points>
+          <levels>B???????????@???B</levels>
+        </polyline>
+        <duration>
+          <value>141</value>
+          <text>2 mins</text>
+        </duration>
+        <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; at &lt;b&gt;TN-53 S&lt;/b&gt; &lt;div style="font-size:0.9em"&gt;Destination will be on the right&lt;/div&gt;</html_instructions>
+        <distance>
+          <value>1912</value>
+          <text>1.2 mi</text>
+        </distance>
+      </step>
+      <duration>
+        <value>363</value>
+        <text>6 mins</text>
+      </duration>
+      <distance>
+        <value>5862</value>
+        <text>3.6 mi</text>
+      </distance>
+      <start_location>
+        <lat>36.2264000</lat>
+        <lng>-85.9490200</lng>
+      </start_location>
+      <end_location>
+        <lat>36.1773300</lat>
+        <lng>-85.9475700</lng>
+      </end_location>
+      <start_address>121 Gordonsville Hwy, Carthage, TN 37030, USA</start_address>
+      <end_address>499 Gordonsville Hwy, Gordonsville, TN 38563, USA</end_address>
+    </leg>
+    <copyrights>Map data ©2010 Google</copyrights>
+    <overview_polyline>
+      <points>_nb|Ej|qkOfCFhH_@dEc@rE?nDb@vEjCjHxFzBtBpKnDlD|@bEPbGv@pFiArF?pHyDzDQHF~AExGz@dE?zE`@~@l@zDHbBf@lEf@pAZlG|FrC|@bGfFvBv@vLDfFoD`BOTw@zPiJPU~@QxCyA|C_BbBoAvCa@vI}F^q@xBg@~LmGbC{@|Be@rQFvAW</points>
+      <levels>B????@??@???@??@?????@????@???@A?????????????@???B</levels>
+    </overview_polyline>
+  </route>
+</DirectionsResponse>
