@@ -1,13 +1,9 @@
 h2. Usage
 
 Get a google maps API key, and store in your app under GOOGLE_MAPS_API_KEY
-<pre>
-GOOGLE_MAPS_API_KEY = 'your_api_key'
-</pre>
+<pre>GOOGLE_MAPS_API_KEY = 'your_api_key'</pre>
 
-<pre>
-directions = GoogleDirections.new(origin, destination)
-</pre>
+<pre>directions = GoogleDirections.new(origin, destination)</pre>
 where _origin_ and _destination_ are strings of addresses or places that Google can find an address for.  Example: "816 Meridian St., 37207"
 
 Get drive time or distance of whole trip
@@ -36,16 +32,13 @@ rails 3.0
 
 h3. Rails plugin
 
-rails 2.3
-<pre>
-script/plugin install git://github.com/joshcrews/google-directions-ruby.git
-</pre>
-rails 3.0
-<pre>
-rails plugin install git://github.com/joshcrews/google-directions-ruby.git
-</pre>
+Rails 2.3
+<pre>script/plugin install git://github.com/joshcrews/google-directions-ruby.git</pre>
 
-h3. Compatability
+Rails 3.0
+<pre>rails plugin install git://github.com/joshcrews/google-directions-ruby.git</pre>
+
+h3. Compatibility
 
 Tested on Rails 2.3.8
 
