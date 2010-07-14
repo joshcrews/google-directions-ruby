@@ -10,27 +10,44 @@ directions = GoogleDirections.new(origin, destination)
 </pre>
 where _origin_ and _destination_ are strings of addresses or places that Google can find an address for.  Example: "816 Meridian St., 37207"
 
+Get drive time or distance of whole trip
 <pre>
 drive_time_in_minutes = directions.drive_time_in_minutes
 distance_in_miles = directions.distance_in_miles
 </pre>
-Call these two methods to get integers back for the entire drive time of the trip in minutes and distance in miles
 
+Get the XML Google returns with every turn, or the API call URL
 <pre>
 xml = directions.xml  
 xml_call = directions.xml_call
 </pre>
-Call these if you want the XML Google returns containing all the driving steps or you want to see the URL
 
 h2. Installation
 
 h3. gem
+
+rails 2.3
 # gem install google_directions
 # add config.gem "google_directions" to your environment.rb file
 
-Or do Bundler's Gemfile
+rails 3.0
+# gem 'google_directions' in your Gemfile
+# <pre>bundle install</pre> from command line
 
-h3. Rails 2.3.8 compatible
+h3. Rails plugin
+
+rails 2.3
+<pre>
+script/plugin install git://github.com/joshcrews/google-directions-ruby.git
+</pre>
+rails 3.0
+<pre>
+rails plugin install git://github.com/joshcrews/google-directions-ruby.git
+</pre>
+
+h3. Compatability
+
+Tested on Rails 2.3.8
 
 Not yet tested on Rails 3.  It probably is Rails 3 compatible, because it's just a single class with a few methods.  It's probably compatible with every ruby project ever.
 
