@@ -31,7 +31,7 @@ class GoogleDirections
   end
 
   def drive_time_in_minutes
-    if @status == "NOT_FOUND"
+    if @status == "NOT_FOUND" or @status == "OVER_QUERY_LIMIT"
       drive_time = 0
     else
       doc = Nokogiri::XML(@xml)
@@ -41,7 +41,7 @@ class GoogleDirections
   end
 
   def distance_in_miles
-    if @status == "NOT_FOUND"
+    if @status == "NOT_FOUND" or @status == "OVER_QUERY_LIMIT"
       distance_in_miles = 0
     else
       doc = Nokogiri::XML(@xml)
