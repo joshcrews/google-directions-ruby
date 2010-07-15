@@ -20,9 +20,13 @@ xml_call = directions.xml_call
 
 h3. Error situations
 
+status: NOT_FOUND
+
 If Google can't recognize your places, the distance_in_miles and drive_time_in_minutes will each return 0.  You can call <pre>directions.status</pre> and it should return "NOT_FOUND" (directions.status will also return any other Google API call statuses)
 
-TODO: handle QUERY_OVER_LIMIT
+status: OVER_QUERY_LIMIT
+
+If Google thinks you've hit their API too many times in day, or too rapidly, for your given IP address and API key; they might return OVER_QUERY_LIMIT.  In this case distance_in_miles and drive_time_in_minutes will each return 0.  You can call <pre>directions.status</pre> and it should return "OVER_QUERY_LIMIT"
 
 h2. Installation
 
