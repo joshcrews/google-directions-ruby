@@ -58,3 +58,13 @@ http://code.google.com/apis/maps/signup.html
 
 Include it as the constant GOOGLE_MAPS_API_KEY in an app configuration file (environment.rb, config/initializers/api_keys.rb)
 
+h3. Need turn-by-turn directions?
+
+Not yet included in this gem, but you can do it with nokogiri to parse the XML that comes back when you do
+<pre>GoogleDirections.new(origin, destination).xml</pre>
+And then nokogiri can cycle through each <step> and you can pick out what you need.
+
+h2. License
+
+Anyone can use this code in any way.
+
