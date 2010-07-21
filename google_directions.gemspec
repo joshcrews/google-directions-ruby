@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{google_directions}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Josh Crews"]
-  s.date = %q{2010-07-15}
+  s.date = %q{2010-07-20}
   s.description = %q{Ruby-wrapper for Google Directions API.  Can return the drive time and driving distance between to places}
   s.email = %q{josh@joshcrews.com}
   s.extra_rdoc_files = ["README.textile", "lib/google_directions.rb"]
