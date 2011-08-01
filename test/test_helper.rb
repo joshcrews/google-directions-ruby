@@ -3,5 +3,6 @@ require 'rubygems'
 require 'mocha'
 require 'test/unit'
 
-$:.unshift File.expand_path('../lib', __FILE__)
+lib_dir = File.join(File.dirname(__FILE__), '..', 'lib')
+$:.unshift(File.expand_path(lib_dir))
 require 'google_directions'
