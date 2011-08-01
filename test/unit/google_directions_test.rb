@@ -29,6 +29,11 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("ZERO_RESULTS", directions.status)
   end
-  
-  
+
+  def test_french_direction
+    assert_nothing_raised do
+      # URI::InvalidURIError
+      directions = GoogleDirections.new("15 rue poissonnière, 75002 Paris", "169 11th Street CA 94103 San Francisco United States")
+    end
+  end
 end
