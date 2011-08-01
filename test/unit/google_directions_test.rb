@@ -24,7 +24,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
   end
   
   def test_zero_results
-    directions = GoogleDirections.new("COMMUNITY SOUTH HOSPITAL 1402 EAST COUNTY LINE ROAD, 46227", "499 Gordonsville Highway, 38563")
+    directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563")
     assert_equal(0, directions.distance_in_miles)
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("ZERO_RESULTS", directions.status)
