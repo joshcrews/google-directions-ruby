@@ -62,7 +62,7 @@ class GoogleDirections
   private
   
     def convert_to_minutes(text)
-      (text.to_i / 60).ceil
+      (text.to_f / 60).round
     end
   
     def transcribe(location)
