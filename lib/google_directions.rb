@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'cgi'
 require 'net/http'
 require 'nokogiri'
 require 'google_directions'
@@ -66,7 +67,7 @@ class GoogleDirections
     end
   
     def transcribe(location)
-      location.gsub(" ", "+")
+      CGI::escape(location)
     end
 
     def get_url(url)
