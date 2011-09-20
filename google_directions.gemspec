@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
   s.summary = %q{Ruby-wrapper for Google Directions API.  Can return the drive time and driving distance between to places}
   s.test_files = Dir.glob("test/**/*_test.rb")
 
-  s.add_dependency("nokogiri", "~>1.5.0")
-  s.add_dependency("extlib", "~>0.9.15")
+  s.add_dependency("nokogiri", ">=1.4.1")
+  s.add_dependency("extlib", ">=0.9.15")
 end
