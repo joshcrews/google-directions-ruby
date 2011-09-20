@@ -17,18 +17,21 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{google_directions}
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Ruby-wrapper for Google Directions API.  Can return the drive time and driving distance between to places}
-  s.test_files = ["test/test_helper.rb", "test/unit/google_directions_test.rb"]
+  s.test_files = ["test/test_helper.rb", "test/unit/google_directions_test.rb", "test/mocks/google_directions_samle_xml.xml"]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<nokogiri>, [">= 1.4.1"])
+      s.add_development_dependency(%q<nokogiri>, [">= 1.5.0"])
+      s.add_development_dependency(%q<extlib>, [">= 0.9.15"])
     else
-      s.add_dependency(%q<nokogiri>, [">= 1.4.1"])
+      s.add_dependency(%q<nokogiri>, [">= 1.5.0"])
+      s.add_dependency(%q<extlib>, [">= 0.9.15"])
     end
   else
-    s.add_dependency(%q<nokogiri>, [">= 1.4.1"])
+    s.add_dependency(%q<nokogiri>, [">= 1.5.0"])
+    s.add_dependency(%q<extlib>, [">= 0.9.15"])
   end
 end
