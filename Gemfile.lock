@@ -13,6 +13,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  extlib (>= 0.9.15)
+  extlib (~> 0.9.15)
   google_directions!
-  nokogiri (>= 1.5.0)
+  nokogiri (~> 1.5.0)
