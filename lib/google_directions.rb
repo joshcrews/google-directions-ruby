@@ -11,7 +11,14 @@ class GoogleDirections
 
   @@base_url = 'http://maps.googleapis.com/maps/api/directions/xml'
 
-  def initialize(origin, destination, opts={:language => :en, :alternative => :true, :sensor => :false, :mode => :driving})
+  @@default_options = {
+    :language => :en,
+    :alternative => :true,
+    :sensor => :false,
+    :mode => :driving,
+  }
+
+  def initialize(origin, destination, opts=@@default_options)
     @origin = transcribe(origin)
     @destination = transcribe(destination)
     options = opts.merge({:origin => @origin, :destination => @destination})
@@ -38,11 +45,21 @@ class GoogleDirections
     end
   end
 
+  # the distance.value field always contains a value expressed in meters.
+  def distance
+    return @distance if @distance
+    unless @status == 'OK'
+      @distance = 0
+    else
+      @distance = @doc.css("distance value").last.text
+    end
+  end
+
   def distance_in_miles
     if @status != "OK"
       distance_in_miles = 0
     else
-      meters = @doc.css("distance value").last.text
+      meters = distance
       distance_in_miles = (meters.to_f / 1610.22).round
       distance_in_miles
     end
