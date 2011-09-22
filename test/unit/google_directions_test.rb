@@ -5,12 +5,16 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'test_helper'))
 class GoogleDirectionsTest < Test::Unit::TestCase
 
   def test_happy_case
-    directions = GoogleDirections.new("121 Gordonsville Highway, 37030", "499 Gordonsville Highway, 38563")
+    orig = "121 Gordonsville Highway, 37030"
+    dest = "499 Gordonsville Highway, 38563"
+    directions = GoogleDirections.new(orig, dest)
     assert_equal(4, directions.distance_in_miles)
     assert_equal(6, directions.drive_time_in_minutes)
     assert_equal('http://maps.googleapis.com/maps/api/directions/xml?language=en&alternative=true&sensor=false&mode=driving&origin=121+Gordonsville+Highway%2C+37030&destination=499+Gordonsville+Highway%2C+38563', directions.xml_call)
     # end_location > lat
     assert_not_nil(directions.xml =~ /36\.1772300/)
+    assert_equal orig, directions.origin
+    assert_equal dest, directions.destination
   end
   
   def test_directions_not_found

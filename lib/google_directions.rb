@@ -7,7 +7,7 @@ require 'extlib/hash'
 
 class GoogleDirections
 
-  attr_reader :status, :doc, :xml
+  attr_reader :status, :doc, :xml, :origin, :destination
 
   @@base_url = 'http://maps.googleapis.com/maps/api/directions/xml'
 
@@ -19,9 +19,9 @@ class GoogleDirections
   }
 
   def initialize(origin, destination, opts=@@default_options)
-    @origin = transcribe(origin)
-    @destination = transcribe(destination)
-    options = opts.merge({:origin => @origin, :destination => @destination})
+    @origin = origin
+    @destination = destination
+    options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
 
     @url = @@base_url + '?' + options.to_params
     @xml = open(@url).read
