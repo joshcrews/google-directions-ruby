@@ -7,7 +7,7 @@ require 'extlib/hash'
 
 class GoogleDirections
 
-  attr_reader :status, :doc, :xml, :origin, :destination
+  attr_reader :status, :doc, :xml, :origin, :destination, :options
 
   @@base_url = 'http://maps.googleapis.com/maps/api/directions/xml'
 
@@ -21,9 +21,9 @@ class GoogleDirections
   def initialize(origin, destination, opts=@@default_options)
     @origin = origin
     @destination = destination
-    options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
+    @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
 
-    @url = @@base_url + '?' + options.to_params
+    @url = @@base_url + '?' + @options.to_params
     @xml = open(@url).read
     @doc = Nokogiri::XML(@xml)
     @status = @doc.css('status').text
@@ -65,6 +65,9 @@ class GoogleDirections
     end
   end
 
+  def public_url
+    "http://maps.google.com/maps?saddr=#{transcribe(@origin)}&daddr=#{transcribe(@destination)}&hl=#{@options[:language]}&ie=UTF8"
+  end
 
   def steps
     if @status == 'OK'
