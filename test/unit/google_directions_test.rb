@@ -16,14 +16,14 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal orig, directions.origin
     assert_equal dest, directions.destination
   end
-  
+
   def test_directions_not_found
     directions = GoogleDirections.new("fasfefasdfdfsd", "499 Gordonsville Highway, 38563")
     assert_equal(0, directions.distance_in_miles)
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("NOT_FOUND", directions.status)
   end
-  
+
   def test_zero_results
     directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563")
     assert_equal(0, directions.distance_in_miles)
@@ -42,5 +42,11 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     directions = GoogleDirections.new("rue poissonnière, 75002 Paris", "51 rue de Turbigo, 75003 Paris France")
     assert_equal Array, directions.steps.class
     assert_equal 3, directions.steps.size
+  end
+
+  def test_distance_text
+    directions = GoogleDirections.new("Place du Maquis du Vercors PARIS-19EME", "rue poissoniere 75002 paris")
+    assert_equal String, directions.distance_text.class
+    assert_equal "6.7 km", directions.distance_text
   end
 end
