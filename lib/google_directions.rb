@@ -58,7 +58,7 @@ class GoogleDirections
   def distance_text
     return @distance_text if @distance_text
     unless @status == 'OK'
-      @distance_text = "0"
+      @distance_text = "0 km"
     else
       @distance_text = @doc.css("distance text").last.text
     end

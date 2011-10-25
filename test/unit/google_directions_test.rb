@@ -49,4 +49,9 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal String, directions.distance_text.class
     assert_equal "6.7 km", directions.distance_text
   end
+
+  def test_zero_distance_text
+    directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563")
+    assert_equal "0 km", directions.distance_text
+  end
 end
