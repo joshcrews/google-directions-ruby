@@ -7,74 +7,60 @@
       <step>
         <travel_mode>DRIVING</travel_mode>
         <start_location>
-          <lat>36.2264000</lat>
-          <lng>-85.9490200</lng>
+          <lat>36.2263600</lat>
+          <lng>-85.9490400</lng>
         </start_location>
         <end_location>
-          <lat>36.1929700</lat>
-          <lng>-85.9550000</lng>
+          <lat>36.1772300</lat>
+          <lng>-85.9476400</lng>
         </end_location>
         <polyline>
-          <points>_nb|Ej|qkOfCFhH_@dEc@rE?nDb@vEjCjHxFzBtBpKnDlD|@bEPbGv@pFiArF?pHyDzDQHF~AExGz@dE?zE`@~@l@zDHbBf@lEf@pAZlG|FrC|@bGfFvBv@vLDfFoD`BO</points>
-          <levels>B????@??@???@???@??????@??@???@@?B</levels>
+          <points>wmb|En|qkObGX~BGbBQhHwAnBUxB?fBZlCjAzA~At@jA|DnIbC~DnAfAfDjBpCl@zAJ~A?vC[hRmEnHmA`Z}@~ENfCTlDt@xG|BxGvDtFlEnExC`Dz@bCLlAAnBS~CgAbXgPlOyHrf@}TfAOpQHlBE</points>
+          <levels>B??????@????@???@???@??@????@??A????@??B</levels>
         </polyline>
         <duration>
-          <value>222</value>
-          <text>4 mins</text>
+          <value>354</value>
+          <text>6 mins</text>
         </duration>
-        <html_instructions>Head &lt;b&gt;south&lt;/b&gt; on &lt;b&gt;TN-53 S/Gordonsville Hwy&lt;/b&gt; toward &lt;b&gt;Riverwood Cir&lt;/b&gt;</html_instructions>
+        <html_instructions>Head &lt;b&gt;south&lt;/b&gt; on &lt;b&gt;TN-53 S/Gordonsville Hwy&lt;/b&gt; toward &lt;b&gt;Riverwood Cir&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;Destination will be on the right&lt;/div&gt;</html_instructions>
         <distance>
-          <value>3950</value>
-          <text>2.5 mi</text>
-        </distance>
-      </step>
-      <step>
-        <travel_mode>DRIVING</travel_mode>
-        <start_location>
-          <lat>36.1929700</lat>
-          <lng>-85.9550000</lng>
-        </start_location>
-        <end_location>
-          <lat>36.1773300</lat>
-          <lng>-85.9475700</lng>
-        </end_location>
-        <polyline>
-          <points>a}{{EvaskOTw@zPiJPU~@QxCyA|C_BbBoAvCa@vI}F^q@xBg@~LmGbC{@|Be@rQFvAW</points>
-          <levels>B???????????@???B</levels>
-        </polyline>
-        <duration>
-          <value>141</value>
-          <text>2 mins</text>
-        </duration>
-        <html_instructions>Turn &lt;b&gt;left&lt;/b&gt; at &lt;b&gt;TN-53 S&lt;/b&gt; &lt;div style="font-size:0.9em"&gt;Destination will be on the right&lt;/div&gt;</html_instructions>
-        <distance>
-          <value>1912</value>
-          <text>1.2 mi</text>
+          <value>5928</value>
+          <text>3.7 mi</text>
         </distance>
       </step>
       <duration>
-        <value>363</value>
+        <value>354</value>
         <text>6 mins</text>
       </duration>
       <distance>
-        <value>5862</value>
-        <text>3.6 mi</text>
+        <value>5928</value>
+        <text>3.7 mi</text>
       </distance>
       <start_location>
-        <lat>36.2264000</lat>
-        <lng>-85.9490200</lng>
+        <lat>36.2263600</lat>
+        <lng>-85.9490400</lng>
       </start_location>
       <end_location>
-        <lat>36.1773300</lat>
-        <lng>-85.9475700</lng>
+        <lat>36.1772300</lat>
+        <lng>-85.9476400</lng>
       </end_location>
       <start_address>121 Gordonsville Hwy, Carthage, TN 37030, USA</start_address>
       <end_address>499 Gordonsville Hwy, Gordonsville, TN 38563, USA</end_address>
     </leg>
-    <copyrights>Map data ©2010 Google</copyrights>
+    <copyrights>Map data ©2011 Google</copyrights>
     <overview_polyline>
-      <points>_nb|Ej|qkOfCFhH_@dEc@rE?nDb@vEjCjHxFzBtBpKnDlD|@bEPbGv@pFiArF?pHyDzDQHF~AExGz@dE?zE`@~@l@zDHbBf@lEf@pAZlG|FrC|@bGfFvBv@vLDfFoD`BOTw@zPiJPU~@QxCyA|C_BbBoAvCa@vI}F^q@xBg@~LmGbC{@|Be@rQFvAW</points>
-      <levels>B????@??@???@??@?????@????@???@A?????????????@???B</levels>
+      <points>wmb|En|qkObGX~BGbBQhHwAnBUxB?fBZlCjAzA~At@jA|DnIbC~DnAfAfDjBpCl@zAJ~A?vC[hRmEnHmA`Z}@~ENfCTlDt@xG|BxGvDtFlEnExC`Dz@bCLlAAnBS~CgAbXgPlOyHrf@}TfAOpQHlBE</points>
+      <levels>B??????@????@???@???@??@????@??A????@??B</levels>
     </overview_polyline>
+    <bounds>
+      <southwest>
+        <lat>36.1772300</lat>
+        <lng>-85.9560100</lng>
+      </southwest>
+      <northeast>
+        <lat>36.2263600</lat>
+        <lng>-85.9476200</lng>
+      </northeast>
+    </bounds>
   </route>
 </DirectionsResponse>
