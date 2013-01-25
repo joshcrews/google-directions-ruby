@@ -1,8 +1,5 @@
 h2. Usage
 
-Get a google maps API key, and store in your app under GOOGLE_MAPS_API_KEY
-<pre>GOOGLE_MAPS_API_KEY = 'your_api_key'</pre>
-
 <pre>directions = GoogleDirections.new(origin, destination)</pre>
 where _origin_ and _destination_ are strings of addresses or places that Google can find an address for.  Example: "816 Meridian St., 37207"
 
