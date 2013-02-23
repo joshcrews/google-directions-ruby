@@ -17,12 +17,19 @@ class GoogleDirections
     :sensor => :false,
     :mode => :driving,
   }
-
+  
   def initialize(origin, destination, opts=@@default_options)
     @origin = origin
     @destination = destination
-    @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
-
+    @options = begin
+      opts = @@default_options.merge opts
+      if opts[:coordinates]
+        opts.merge({:origin => @origin, :destination => @destination})
+      else
+        opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
+      end
+    end 
+ 
     @url = @@base_url + '?' + @options.to_params
     @xml = open(@url).read
     @doc = Nokogiri::XML(@xml)
