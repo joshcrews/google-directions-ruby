@@ -1,7 +1,8 @@
 # encoding: UTF-8
 require 'cgi'
 require 'net/http'
-require 'open-uri'
+require 'em-http-request'
+require 'em-synchrony'
 require 'nokogiri'
 require 'extlib/hash'
 
@@ -16,6 +17,7 @@ class GoogleDirections
     :alternative => :true,
     :sensor => :false,
     :mode => :driving,
+    :use_em => false
   }
 
   def initialize(origin, destination, opts=@@default_options)
@@ -24,7 +26,16 @@ class GoogleDirections
     @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
 
     @url = @@base_url + '?' + @options.to_params
-    @xml = open(@url).read
+ 
+    if @options[:use_em]
+      HTTPI.adapter = :em_http
+      client = HTTPI
+      req = HTTPI::Request.new(@url)
+      @xml = client.request(:get, req).body.to_s
+    else
+      @xml = open(@url).read
+    end
+
     @doc = Nokogiri::XML(@xml)
     @status = @doc.css('status').text
   end
