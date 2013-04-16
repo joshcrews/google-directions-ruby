@@ -69,7 +69,7 @@ class GoogleDirections
       distance_in_miles = 0
     else
       meters = distance
-      distance_in_miles = (meters.to_f / 1610.22).round
+      distance_in_miles = (meters.to_f / 1610.22).round(2)
       distance_in_miles
     end
   end
