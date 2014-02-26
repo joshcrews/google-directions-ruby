@@ -3,7 +3,7 @@ require 'cgi'
 require 'net/http'
 require 'open-uri'
 require 'nokogiri'
-require 'extlib/hash'
+# require 'extlib/hash'
 
 class GoogleDirections
 
@@ -23,7 +23,7 @@ class GoogleDirections
     @destination = destination
     @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
 
-    @url = @@base_url + '?' + @options.to_params
+    @url = @@base_url + '?' + @options.to_query
     @xml = open(@url).read
     @doc = Nokogiri::XML(@xml)
     @status = @doc.css('status').text

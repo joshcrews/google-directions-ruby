@@ -20,5 +20,4 @@ Gem::Specification.new do |s|
   s.test_files = Dir.glob("test/**/*_test.rb")
 
   s.add_dependency("nokogiri", ">=1.4.1")
-  s.add_dependency("extlib", ">=0.9.15")
 end
