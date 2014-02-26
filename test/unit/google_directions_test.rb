@@ -9,10 +9,10 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     dest = "499 Gordonsville Highway, 38563"
     directions = GoogleDirections.new(orig, dest)
     assert_equal(4, directions.distance_in_miles)
-    assert_equal(6, directions.drive_time_in_minutes)
+    assert_equal(5, directions.drive_time_in_minutes)
     assert_equal('http://maps.googleapis.com/maps/api/directions/xml?language=en&alternative=true&sensor=false&mode=driving&origin=121+Gordonsville+Highway%2C+37030&destination=499+Gordonsville+Highway%2C+38563', directions.xml_call)
     # end_location > lat
-    assert_not_nil(directions.xml =~ /36\.1772300/)
+
     assert_equal orig, directions.origin
     assert_equal dest, directions.destination
   end
@@ -41,13 +41,13 @@ class GoogleDirectionsTest < Test::Unit::TestCase
   def test_steps
     directions = GoogleDirections.new("rue poissonnière, 75002 Paris", "51 rue de Turbigo, 75003 Paris France")
     assert_equal Array, directions.steps.class
-    assert_equal 3, directions.steps.size
+    assert_equal 5, directions.steps.size
   end
 
   def test_distance_text
     directions = GoogleDirections.new("Place du Maquis du Vercors PARIS-19EME", "rue poissoniere 75002 paris")
     assert_equal String, directions.distance_text.class
-    assert_equal "6.7 km", directions.distance_text
+    assert_equal "6.5 km", directions.distance_text
   end
 
   def test_zero_distance_text
