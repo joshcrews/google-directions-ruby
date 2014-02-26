@@ -3,7 +3,7 @@ require 'rubygems'
 require 'rake'
 require 'echoe'
 
-Echoe.new('google_directions', '0.1.6') do |p|
+Echoe.new('google_directions', '0.1.6.1') do |p|
   p.description    = "Ruby-wrapper for Google Directions API.  Can return the drive time and driving distance between to places"
   p.url            = "http://github.com/joshcrews/Google-Directions-Ruby"
   p.author         = "Josh Crews"
