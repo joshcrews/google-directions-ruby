@@ -3,7 +3,6 @@ require 'cgi'
 require 'net/http'
 require 'open-uri'
 require 'nokogiri'
-# require 'extlib/hash'
 
 class GoogleDirections
 
