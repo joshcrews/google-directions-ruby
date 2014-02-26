@@ -29,27 +29,16 @@ h2. Installation
 
 h3. gem
 
-rails 2.3
-# gem install google_directions
-# add config.gem "google_directions" to your environment.rb file
+rails 3.0/4.0
 
-rails 3.0
 # gem 'google_directions' in your Gemfile
 # <pre>bundle install</pre> from command line
 
-h3. Rails plugin
-
-Rails 2.3
-<pre>script/plugin install git://github.com/joshcrews/google-directions-ruby.git</pre>
-
-Rails 3.0
-<pre>rails plugin install git://github.com/joshcrews/google-directions-ruby.git</pre>
 
 h3. Compatibility
 
 Tested on Rails 2.3.8
-
-Not yet tested on Rails 3.  It probably is Rails 3 compatible, because it's just a single class with a few methods.  It's probably compatible with every ruby project ever.
+Tested on Rails 4.0.1
 
 h3. Google maps API key
 
