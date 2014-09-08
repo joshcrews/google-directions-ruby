@@ -10,6 +10,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     directions = GoogleDirections.new(orig, dest)
     assert_equal(4, directions.distance_in_miles)
     assert_equal(5, directions.drive_time_in_minutes)
+    assert_equal(directions.successful?, true)
     assert_equal('http://maps.googleapis.com/maps/api/directions/xml?language=en&alternative=true&sensor=false&mode=driving&origin=121+Gordonsville+Highway%2C+37030&destination=499+Gordonsville+Highway%2C+38563', directions.xml_call)
     # end_location > lat
 
@@ -22,6 +23,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal(0, directions.distance_in_miles)
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("NOT_FOUND", directions.status)
+    assert_equal(directions.successful?, false)
   end
 
   def test_zero_results
@@ -29,6 +31,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal(0, directions.distance_in_miles)
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("ZERO_RESULTS", directions.status)
+    assert_equal(directions.successful?, false)
   end
 
   def test_french_direction
@@ -47,7 +50,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
   def test_distance_text
     directions = GoogleDirections.new("Place du Maquis du Vercors PARIS-19EME", "rue poissoniere 75002 paris")
     assert_equal String, directions.distance_text.class
-    assert_equal "6.5 km", directions.distance_text
+    assert_equal "6.1 km", directions.distance_text
   end
 
   def test_zero_distance_text

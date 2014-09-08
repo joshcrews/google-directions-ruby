@@ -22,7 +22,7 @@ class GoogleDirections
     @destination = destination
     @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
 
-    @url = @@base_url + '?' + @options.to_query
+    @url = @@base_url + '?' + querify(@options)
     @xml = open(@url).read
     @doc = Nokogiri::XML(@xml)
     @status = @doc.css('status').text
@@ -36,7 +36,7 @@ class GoogleDirections
   #http://maps.google.com/maps/api/directions/xml?origin=St.+Louis,+MO&destination=Nashville,+TN&sensor=false&key=ABQIAAAAINgf4OmAIbIdWblvypOUhxSQ8yY-fgrep0oj4uKpavE300Q6ExQlxB7SCyrAg2evsxwAsak4D0Liiv
 
   def drive_time_in_minutes
-    if @status != "OK"
+    unless successful?
       drive_time = 0
     else
       drive_time = @doc.css("duration value").last.text
@@ -47,7 +47,7 @@ class GoogleDirections
   # the distance.value field always contains a value expressed in meters.
   def distance
     return @distance if @distance
-    unless @status == 'OK'
+    unless successful?
       @distance = 0
     else
       @distance = @doc.css("distance value").last.text
@@ -56,7 +56,7 @@ class GoogleDirections
 
   def distance_text
     return @distance_text if @distance_text
-    unless @status == 'OK'
+    unless successful?
       @distance_text = "0 km"
     else
       @distance_text = @doc.css("distance text").last.text
@@ -64,7 +64,7 @@ class GoogleDirections
   end
 
   def distance_in_miles
-    if @status != "OK"
+    unless successful?
       distance_in_miles = 0
     else
       meters = distance
@@ -73,12 +73,16 @@ class GoogleDirections
     end
   end
 
+  def successful?
+    @status == "OK"
+  end
+
   def public_url
     "http://maps.google.com/maps?saddr=#{transcribe(@origin)}&daddr=#{transcribe(@destination)}&hl=#{@options[:language]}&ie=UTF8"
   end
 
   def steps
-    if @status == 'OK'
+    if successful?
       @doc.css('html_instructions').map {|a| a.text }
     else
       []
@@ -95,6 +99,16 @@ class GoogleDirections
       CGI::escape(location)
     end
 
+    def querify(options)
+      params = ''
+
+      options.each do |k, v|
+        params << "#{k}=#{v}&"
+      end
+
+      params.chop! # trailing &
+      params
+    end
 end
 
 
