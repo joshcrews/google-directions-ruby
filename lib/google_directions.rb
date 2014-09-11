@@ -100,14 +100,9 @@ end
 class Hash
 
   def to_query
-    params = ''
-
-    each do |k, v|
-      params << "#{k}=#{v}&"
-    end
-
-    params.chop! # trailing &
-    params
+    collect do |k, v|
+      "#{k}=#{v}"
+    end * '&'
   end unless method_defined? :to_query
 
 end
