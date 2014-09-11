@@ -20,7 +20,7 @@ class GoogleDirections
   def initialize(origin, destination, opts=@@default_options)
     @origin = origin
     @destination = destination
-    @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
+    @options = opts.merge({:origin => @origin, :destination => @destination})
 
     @url = @@base_url + '?' + @options.to_query
     @xml = open(@url).read
@@ -90,11 +90,6 @@ class GoogleDirections
     def convert_to_minutes(text)
       (text.to_f / 60).round
     end
-
-    def transcribe(location)
-      CGI::escape(location)
-    end
-
 end
 
 class Hash
