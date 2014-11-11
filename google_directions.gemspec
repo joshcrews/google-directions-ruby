@@ -9,4 +9,6 @@ Gem::Specification.new do |s|
   s.files       = ["init.rb", "lib/google_directions.rb"]
   s.homepage    = 'https://github.com/joshcrews/google-directions-ruby'
   s.license     = 'MIT'
+
+  s.add_dependency "nokogiri", ">= 1.4.1"
 end
