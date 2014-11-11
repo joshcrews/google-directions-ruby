@@ -7,7 +7,10 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    metaclass (0.0.4)
     mini_portile (0.6.0)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
 
@@ -16,3 +19,4 @@ PLATFORMS
 
 DEPENDENCIES
   google_directions!
+  mocha

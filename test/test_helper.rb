@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'rubygems'
 require 'mocha'
-require 'test/unit'
+require 'minitest/autorun'
 
 require 'google_directions'

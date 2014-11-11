@@ -2,7 +2,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'test_helper'))
 
 # TODO: mocks
-class GoogleDirectionsTest < Test::Unit::TestCase
+class GoogleDirectionsTest < Minitest::Test
 
   def test_happy_case
     orig = "121 Gordonsville Highway, 37030"
@@ -35,22 +35,20 @@ class GoogleDirectionsTest < Test::Unit::TestCase
   end
 
   def test_french_direction
-    assert_nothing_raised do
-      # URI::InvalidURIError
-      directions = GoogleDirections.new("15 rue poissonnière, 75002 Paris", "169 11th Street CA 94103 San Francisco United States")
-    end
+    directions = GoogleDirections.new("15 rue poissonnière, 75002 Paris", "169 11th Street CA 94103 San Francisco United States")
+    assert_equal Array, directions.steps.class
   end
 
   def test_steps
     directions = GoogleDirections.new("rue poissonnière, 75002 Paris", "51 rue de Turbigo, 75003 Paris France")
     assert_equal Array, directions.steps.class
-    assert_equal 5, directions.steps.size
+    assert_equal 4, directions.steps.size
   end
 
   def test_distance_text
     directions = GoogleDirections.new("Place du Maquis du Vercors PARIS-19EME", "rue poissoniere 75002 paris")
     assert_equal String, directions.distance_text.class
-    assert_equal "6.1 km", directions.distance_text
+    assert_equal "6.7 km", directions.distance_text
   end
 
   def test_zero_distance_text
