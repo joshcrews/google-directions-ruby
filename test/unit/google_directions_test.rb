@@ -1,8 +1,9 @@
 # encoding: UTF-8
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'test_helper'))
+require 'mocha/test_unit'
 
 # TODO: mocks
-class GoogleDirectionsTest < Test::Unit::TestCase
+class GoogleDirectionsTest < Minitest::Test
 
   def test_happy_case
     orig = "121 Gordonsville Highway, 37030"
@@ -10,6 +11,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     directions = GoogleDirections.new(orig, dest)
     assert_equal(4, directions.distance_in_miles)
     assert_equal(5, directions.drive_time_in_minutes)
+    assert_equal(directions.successful?, true)
     assert_equal('http://maps.googleapis.com/maps/api/directions/xml?language=en&alternative=true&sensor=false&mode=driving&origin=121+Gordonsville+Highway%2C+37030&destination=499+Gordonsville+Highway%2C+38563', directions.xml_call)
     # end_location > lat
 
@@ -22,6 +24,7 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal(0, directions.distance_in_miles)
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("NOT_FOUND", directions.status)
+    assert_equal(directions.successful?, false)
   end
 
   def test_zero_results
@@ -29,29 +32,35 @@ class GoogleDirectionsTest < Test::Unit::TestCase
     assert_equal(0, directions.distance_in_miles)
     assert_equal(0, directions.drive_time_in_minutes)
     assert_equal("ZERO_RESULTS", directions.status)
+    assert_equal(directions.successful?, false)
   end
 
   def test_french_direction
-    assert_nothing_raised do
-      # URI::InvalidURIError
-      directions = GoogleDirections.new("15 rue poissonnière, 75002 Paris", "169 11th Street CA 94103 San Francisco United States")
-    end
+    directions = GoogleDirections.new("15 rue poissonnière, 75002 Paris", "169 11th Street CA 94103 San Francisco United States")
+    assert_equal Array, directions.steps.class
   end
 
   def test_steps
     directions = GoogleDirections.new("rue poissonnière, 75002 Paris", "51 rue de Turbigo, 75003 Paris France")
     assert_equal Array, directions.steps.class
-    assert_equal 5, directions.steps.size
+    assert_equal 4, directions.steps.size
   end
 
   def test_distance_text
     directions = GoogleDirections.new("Place du Maquis du Vercors PARIS-19EME", "rue poissoniere 75002 paris")
     assert_equal String, directions.distance_text.class
-    assert_equal "6.5 km", directions.distance_text
+    assert_equal "6.7 km", directions.distance_text
   end
 
   def test_zero_distance_text
     directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563")
     assert_equal "0 km", directions.distance_text
+  end
+
+  def test_url_signing
+    result = OpenStruct.new(read: "<xml><status>ERROR</status></xml>")
+    GoogleDirections.any_instance.expects(:open).with('http://maps.googleapis.com/maps/api/directions/xml?channel=channel&client=client&origin=27+Beemdenlaan%2C+2550+Kontich&destination=499+Gordonsville+Highway%2C+38563&signature=Naey6EZm6rFJ8AubrNdD4Xo-c-4=').returns(result)
+    directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563", private_key: "key", channel: "channel", client: "client")
+    GoogleDirections.any_instance.unstub :open
   end
 end

@@ -1,3 +1,5 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem 'nokogiri'
+ruby '2.1.2'
+
+gemspec

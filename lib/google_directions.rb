@@ -3,26 +3,28 @@ require 'cgi'
 require 'net/http'
 require 'open-uri'
 require 'nokogiri'
+require 'openssl'
+require 'base64'
 
 class GoogleDirections
-
-  attr_reader :status, :doc, :xml, :origin, :destination, :options
-
-  @@base_url = 'http://maps.googleapis.com/maps/api/directions/xml'
-
-  @@default_options = {
+  VERSION   = '0.1.6.3'
+  BASE_URL  = 'http://maps.googleapis.com'
+  BASE_PATH = '/maps/api/directions/xml'
+  DEFAULT_OPTIONS = {
     :language => :en,
     :alternative => :true,
     :sensor => :false,
     :mode => :driving,
   }
 
-  def initialize(origin, destination, opts=@@default_options)
+  attr_reader :status, :doc, :xml, :origin, :destination, :options
+
+  def initialize(origin, destination, opts=DEFAULT_OPTIONS)
     @origin = origin
     @destination = destination
-    @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
-
-    @url = @@base_url + '?' + @options.to_query
+    @options = opts.merge({:origin => @origin, :destination => @destination})
+    path = BASE_PATH + '?' + querify(@options)
+    @url = BASE_URL + sign_path(path, @options)
     @xml = open(@url).read
     @doc = Nokogiri::XML(@xml)
     @status = @doc.css('status').text
@@ -32,11 +34,8 @@ class GoogleDirections
     @url
   end
 
-  # an example URL to be generated
-  #http://maps.google.com/maps/api/directions/xml?origin=St.+Louis,+MO&destination=Nashville,+TN&sensor=false&key=ABQIAAAAINgf4OmAIbIdWblvypOUhxSQ8yY-fgrep0oj4uKpavE300Q6ExQlxB7SCyrAg2evsxwAsak4D0Liiv
-
   def drive_time_in_minutes
-    if @status != "OK"
+    unless successful?
       drive_time = 0
     else
       drive_time = @doc.css("duration value").last.text
@@ -47,7 +46,7 @@ class GoogleDirections
   # the distance.value field always contains a value expressed in meters.
   def distance
     return @distance if @distance
-    unless @status == 'OK'
+    unless successful?
       @distance = 0
     else
       @distance = @doc.css("distance value").last.text
@@ -56,7 +55,7 @@ class GoogleDirections
 
   def distance_text
     return @distance_text if @distance_text
-    unless @status == 'OK'
+    unless successful?
       @distance_text = "0 km"
     else
       @distance_text = @doc.css("distance text").last.text
@@ -64,7 +63,7 @@ class GoogleDirections
   end
 
   def distance_in_miles
-    if @status != "OK"
+    unless successful?
       distance_in_miles = 0
     else
       meters = distance
@@ -73,12 +72,16 @@ class GoogleDirections
     end
   end
 
+  def successful?
+    @status == "OK"
+  end
+
   def public_url
     "http://maps.google.com/maps?saddr=#{transcribe(@origin)}&daddr=#{transcribe(@destination)}&hl=#{@options[:language]}&ie=UTF8"
   end
 
   def steps
-    if @status == 'OK'
+    if successful?
       @doc.css('html_instructions').map {|a| a.text }
     else
       []
@@ -95,21 +98,31 @@ class GoogleDirections
       CGI::escape(location)
     end
 
-end
+    def querify(options)
+      params = []
 
-class Hash
+      options.each do |k, v|
+        params << "#{transcribe(k.to_s)}=#{transcribe(v.to_s)}" unless k == :private_key
+      end
 
-  def to_query
-    params = ''
-
-    each do |k, v|
-      params << "#{k}=#{v}&"
+      params.join("&")
     end
 
-    params.chop! # trailing &
-    params
-  end unless method_defined? :to_query
+    def sign_path(path, options)
+      return path unless options[:private_key]
+
+      raw_private_key = url_safe_base64_decode(options[:private_key])
+      digest = OpenSSL::Digest.new('sha1')
+      raw_signature = OpenSSL::HMAC.digest(digest, raw_private_key, path)
+      path + "&signature=#{url_safe_base64_encode(raw_signature)}"
+    end
+
+    def url_safe_base64_decode(base64_string)
+      Base64.decode64(base64_string.tr('-_', '+/'))
+    end
+
+    def url_safe_base64_encode(raw)
+      Base64.encode64(raw).tr('+/', '-_').strip
+    end
 
 end
-
-

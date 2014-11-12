@@ -1,6 +1,6 @@
 h2. Usage
 
-<pre>directions = GoogleDirections.new(origin, destination)</pre>
+<pre>directions = GoogleDirections.new(origin, destination, key: "GOOGLE_API_KEY")</pre>
 where _origin_ and _destination_ are strings of addresses or places that Google can find an address for.  Example: "816 Meridian St., 37207"
 
 Get drive time or distance of whole trip
@@ -42,11 +42,18 @@ Tested on Rails 4.0.1
 
 h3. Google maps API key
 
-You'll need a Google Map API key
+You'll need a Google Map API key for using this service. You can get one here:
 
-http://code.google.com/apis/maps/signup.html
+https://developers.google.com/maps/signup?csw=1
 
-Include it as the constant GOOGLE_MAPS_API_KEY in an app configuration file (environment.rb, config/initializers/api_keys.rb)
+After you got the key, you need to add it to your request like this:
+
+<pre>directions = GoogleDirections.new(origin, destination, key: "GOOGLE_API_KEY")</pre>
+
+If you have a premium aka paid google maps account, you need to enter the private_key,
+client and channel into that hash.
+
+<pre>directions = GoogleDirections.new(origin, destination, private_key: "PRIVATE_KEY", client: "CLIENT_NAME", channel: "CHANNEL_NAME")</pre>
 
 h3. Need turn-by-turn directions?
 
