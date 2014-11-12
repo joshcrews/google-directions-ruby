@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require File.expand_path(File.join(File.dirname(__FILE__), '..', 'test_helper'))
+require 'mocha/test_unit'
 
 # TODO: mocks
 class GoogleDirectionsTest < Minitest::Test
@@ -54,5 +55,12 @@ class GoogleDirectionsTest < Minitest::Test
   def test_zero_distance_text
     directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563")
     assert_equal "0 km", directions.distance_text
+  end
+
+  def test_url_signing
+    result = OpenStruct.new(read: "<xml><status>ERROR</status></xml>")
+    GoogleDirections.any_instance.expects(:open).with('http://maps.googleapis.com/maps/api/directions/xml?channel=channel&client=client&origin=27+Beemdenlaan%2C+2550+Kontich&destination=499+Gordonsville+Highway%2C+38563&signature=Naey6EZm6rFJ8AubrNdD4Xo-c-4=').returns(result)
+    directions = GoogleDirections.new("27 Beemdenlaan, 2550 Kontich", "499 Gordonsville Highway, 38563", private_key: "key", channel: "channel", client: "client")
+    GoogleDirections.any_instance.unstub :open
   end
 end
