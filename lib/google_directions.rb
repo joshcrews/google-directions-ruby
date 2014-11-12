@@ -5,24 +5,24 @@ require 'open-uri'
 require 'nokogiri'
 
 class GoogleDirections
-
-  attr_reader :status, :doc, :xml, :origin, :destination, :options
-
-  @@base_url = 'http://maps.googleapis.com/maps/api/directions/xml'
-
-  @@default_options = {
+  VERSION   = '0.1.6.3'
+  BASE_URL  = 'http://maps.googleapis.com/'
+  BASE_PATH = 'maps/api/directions/xml'
+  DEFAULT_OPTIONS = {
     :language => :en,
     :alternative => :true,
     :sensor => :false,
     :mode => :driving,
   }
 
-  def initialize(origin, destination, opts=@@default_options)
+  attr_reader :status, :doc, :xml, :origin, :destination, :options
+
+  def initialize(origin, destination, opts=DEFAULT_OPTIONS)
     @origin = origin
     @destination = destination
     @options = opts.merge({:origin => transcribe(@origin), :destination => transcribe(@destination)})
 
-    @url = @@base_url + '?' + querify(@options)
+    @url = BASE_URL + BASE_PATH + '?' + querify(@options)
     @xml = open(@url).read
     @doc = Nokogiri::XML(@xml)
     @status = @doc.css('status').text
@@ -31,9 +31,6 @@ class GoogleDirections
   def xml_call
     @url
   end
-
-  # an example URL to be generated
-  #http://maps.google.com/maps/api/directions/xml?origin=St.+Louis,+MO&destination=Nashville,+TN&sensor=false&key=ABQIAAAAINgf4OmAIbIdWblvypOUhxSQ8yY-fgrep0oj4uKpavE300Q6ExQlxB7SCyrAg2evsxwAsak4D0Liiv
 
   def drive_time_in_minutes
     unless successful?
@@ -110,5 +107,3 @@ class GoogleDirections
       params
     end
 end
-
-
